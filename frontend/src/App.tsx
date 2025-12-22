@@ -1,15 +1,9 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-//import './App.css'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { RequireAuth } from "./components/RequireAuth";
-
-function ArticlesPlaceholder() {
-  return <div className="p-6">Articles page placeholder (next step)</div>;
-}
+import { Articles } from "./pages/Articles";
+import { ArticleDetail } from "./pages/ArticleDetail";
 
 export default function App() {
   return (
@@ -23,7 +17,16 @@ export default function App() {
           path="/articles"
           element={
             <RequireAuth>
-              <ArticlesPlaceholder />
+              <Articles />
+            </RequireAuth>
+          }
+        />
+
+        <Route
+          path="/articles/:id"
+          element={
+            <RequireAuth>
+              <ArticleDetail />
             </RequireAuth>
           }
         />
@@ -33,3 +36,4 @@ export default function App() {
     </BrowserRouter>
   );
 }
+

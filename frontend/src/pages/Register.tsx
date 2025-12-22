@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { api } from "../lib/api";
-import { Container } from "../components/Container";
-import { Header } from "../components/Header";
 import { AuthLayout } from "../components/AuthLayout";
 
 export function Register() {

@@ -1,4 +1,5 @@
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:4000";
+import type { Article } from "../types";
 
 export function getToken(): string | null {
   return localStorage.getItem("token");
@@ -57,5 +58,5 @@ export const api = {
     }),
 
   getArticles: () =>
-    request<{ keywords: string[]; articles: any[] }>("/articles"),
+    request<{ keywords: string[]; articles: Article[] }>("/articles"),
 };
