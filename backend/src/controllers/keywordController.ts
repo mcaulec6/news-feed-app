@@ -26,7 +26,10 @@ export function createKeyword(req: AuthenticatedRequest, res: Response) {
 export function deleteKeyword(req: AuthenticatedRequest, res: Response) {
     try {
         const userId = req.userId!;
-        const { keyword } = req.body;
+        const keyword = req.params.keyword;
+        if (!keyword) {
+            return res.status(400).json({ message: "Keyword parameter is required" });
+        }
         const keywords = removeKeyword(userId, keyword);
         res.json({ keywords });
     } catch (error) {
