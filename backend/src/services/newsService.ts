@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { Article } from '../models/Article';
 
 const NEWS_API_KEY = process.env.NEWS_API_KEY!;
-const NEWS_API_URL = process.env.NEWS_API_URL!;
+const BASE_URL = process.env.NEWS_API_URL || 'https://newsapi.org/v2';
 
 function buildQuery(keywords: string[]): string {
   const cleaned = keywords
@@ -22,7 +22,7 @@ export async function fetchArticlesForKeywords(keywords: string[]): Promise<Arti
 
   if (!q) return [];
 
-  const resp = await axios.get(`${NEWS_API_URL}/everything`, {
+  const resp = await axios.get(`${BASE_URL}/everything`, {
     params: {
       q,
       language: "en",
