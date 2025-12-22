@@ -19,6 +19,8 @@ app.get('/', (_req: Request, res: Response) => {
   res.json({status: "ok"});
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
+}
+
+export { app };
