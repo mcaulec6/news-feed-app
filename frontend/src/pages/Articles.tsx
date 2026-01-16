@@ -40,8 +40,7 @@ export function Articles() {
       setKeywords(res.keywords);
       setKeywordInput("");
       // refresh articles after keyword change
-      const a = await api.getArticles();
-      setArticles(a.articles);
+      await refresh();
     } catch (err: any) {
       setError(err.message || "Failed to add keyword");
     }
@@ -52,8 +51,7 @@ export function Articles() {
     try {
       const res = await api.deleteKeyword(k);
       setKeywords(res.keywords);
-      const a = await api.getArticles();
-      setArticles(a.articles);
+      await refresh();
     } catch (err: any) {
       setError(err.message || "Failed to delete keyword");
     }
@@ -149,21 +147,23 @@ export function Articles() {
 
             <div className="mt-4 space-y-3">
               {articles.map((a) => (
-                <Link
-                  to={`/articles/${a.id}`}
-                  key={a.id}
-                  className="block rounded-lg border p-4 hover:bg-gray-50"
-                >
-                  <div className="text-sm text-gray-500">
-                    {a.sourceName} • {new Date(a.publishedAt).toLocaleString()}
-                  </div>
-                  <div className="mt-1 font-semibold">{a.title}</div>
-                  {a.description && (
-                    <div className="mt-1 line-clamp-2 text-sm text-gray-700">
-                      {a.description}
+                <div>
+                  <Link
+                    to={`/articles/${a.id}`}
+                    key={a.id}
+                    className="block rounded-lg border p-4 hover:bg-gray-50"
+                  >
+                    <div className="text-sm text-gray-500">
+                      {a.sourceName} • {new Date(a.publishedAt).toLocaleString()}
                     </div>
-                  )}
-                </Link>
+                    <div className="mt-1 font-semibold">{a.title}</div>
+                    {a.description && (
+                      <div className="mt-1 line-clamp-2 text-sm text-gray-700">
+                        {a.description}
+                      </div>
+                    )}                  
+                  </Link>
+                </div>
               ))}
             </div>
           </div>
