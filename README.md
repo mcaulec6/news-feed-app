@@ -1,6 +1,6 @@
 #News feed app
 
-Lightweight fullstack app for coding challenge with Storyful.
+Lightweight fullstack app 
 
 Users can:
 - Register and sign in 
